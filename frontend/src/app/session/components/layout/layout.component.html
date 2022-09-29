@@ -1,0 +1,68 @@
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            <h2 class="fw-bold mb-2 text-uppercase">Realtime Chat Application</h2>
+            <!--              <p class="text-white-50 mb-5">Public Room!</p>-->
+
+            <div class="mb-md-5 mt-md-4 pb-5">
+
+              <div class="row">
+                <div class="">
+                  <label for="roomInput">Choose room</label>
+                  <select name="roomInput" id="roomInput" class="form-control" [(ngModel)]="room">
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                  </select>
+                </div>
+                <div class="">
+                  <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" [(ngModel)]="user" class="form-control" id="username"
+                           placeholder="search for username"
+                           [disabled]="room=== ''">
+                     <small id="userHelp" class="form-text text-muted">Type your username.</small>
+                  </div>
+                </div>
+
+                <div class="">
+                  <div style="margin-top:25px;" class="pull-right action_btn">
+                    <button type="button" class="btn btn-primary" (click)="join()" [disabled]="room==='private' || room=== ''">Join</button>
+                    <button type="button" class="btn btn-success" (click)="search()"[disabled]="room==='public' || room=== ''">Search</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="msg-box">
+                  <div *ngFor="let item of messageArray">
+                    <span><strong>{{item.user}} : </strong> {{item.message}}</span>
+                  </div>
+<!--                  <span> {{ user }} {{ messageArray }} </span>-->
+                </div>
+                  <span *ngIf="joinMsg"> {{ joinMsg }} </span>
+              </div>
+              <div class="row">
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" [(ngModel)]="messageText">
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-success pull-right" (click)="sendMessage()">Send</button>
+                </div>
+              </div>
+
+            </div>
+            <button class="btn btn-outline-light btn-lg px-5" type="submit" (click)="onLeave()">
+              Leave
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
